@@ -147,7 +147,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
             opacity: 0.8;
@@ -307,14 +306,15 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 300px;
+            width: 280px;
             height: 100vh;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            padding: 20px;
+            padding: 30px 20px;
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
         }
         
         .mobile-menu.open {
@@ -323,11 +323,16 @@
         
         .mobile-menu-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 25px;
             font-size: 24px;
             cursor: pointer;
             color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu-close:hover {
+            transform: rotate(90deg);
         }
         
         .section-title {
@@ -446,12 +451,119 @@
             border-left: 4px solid var(--accent);
         }
         
+        .training-level {
+            background: rgba(26, 32, 44, 0.7);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .training-level:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .tournament-location {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(31, 78, 121, 0.1);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .tournament-location:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .location-marker {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 107, 53, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .partnership-card {
+            background: rgba(26, 32, 44, 0.7);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .partnership-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.1);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 107, 53, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .tournament-system-card {
+            background: rgba(26, 32, 44, 0.7);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tournament-system-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .tournament-system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(31, 78, 121, 0.1), rgba(139, 69, 19, 0.1));
+            z-index: -1;
+        }
+        
+        /* 移动端样式优化 */
         @media (max-width: 768px) {
             .desktop-nav {
                 display: none;
             }
             
             .mobile-menu-btn {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .mobile-menu {
                 display: block;
             }
             
@@ -465,7 +577,7 @@
             
             .hero {
                 padding-top: 60px;
-                min-height: 80vh;
+                min-height: 90vh;
             }
             
             .hero-bg {
@@ -486,6 +598,59 @@
             
             .text-4xl {
                 font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .stats-card {
+                padding: 15px;
+            }
+            
+            .stats-card .number {
+                font-size: 2rem;
+            }
+            
+            .tactical-element {
+                display: none;
+            }
+            
+            .scenario-card {
+                height: 250px;
+            }
+            
+            .mobile-menu-content {
+                padding-top: 60px;
+            }
+            
+            .mobile-menu a {
+                display: block;
+                padding: 15px;
+                font-size: 1.1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                transition: all 0.3s;
+            }
+            
+            .mobile-menu a:hover {
+                background: rgba(255,107,53,0.1);
+                transform: translateX(5px);
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .data-stream {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
             }
         }
         
@@ -509,6 +674,99 @@
             .text-4xl {
                 font-size: 1.5rem;
             }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        
+        /* 新增视觉元素 */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            display: none;
+        }
+        
+        .menu-overlay.active {
+            display: block;
+        }
+        
+        .tournament-feature-card {
+            background: rgba(26, 32, 44, 0.7);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .tournament-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.1);
+            border-color: var(--accent);
+        }
+        
+        .tournament-feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
         }
     </style>
 </head>
@@ -542,13 +800,15 @@
             <div class="hidden md:flex space-x-8 desktop-nav">
                 <a href="#about" class="hover:text-orange-400 transition">賽事概述</a>
                 <a href="#competition" class="hover:text-orange-400 transition">競賽體系</a>
-                <a href="#equipment" class="hover:text-orange-400 transition">裝備技術</a>
+                <a href="#equipment" class="hover:text-orange-400 transition">裝備優勢</a>
                 <a href="#parks" class="hover:text-orange-400 transition">軍推公園</a>
+                <a href="#training" class="hover:text-orange-400 transition">教育培訓</a>
+                <a href="#partnership" class="hover:text-orange-400 transition">合作模式</a>
                 <a href="#contact" class="hover:text-orange-400 transition">聯繫我們</a>
             </div>
             <div class="flex items-center space-x-4">
                 <!-- Language Selector -->
-                <div class="language-selector">
+                <div class="language-selector hidden md:block">
                     <div class="flex items-center cursor-pointer">
                         <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文" class="w-6 h-4 mr-2">
                         <span class="text-sm">繁中</span>
@@ -578,12 +838,14 @@
                     </div>
                 </div>
                 
-                <a href="mailto:info@wmc.cool" class="btn-primary px-6 py-2 rounded-full text-sm">
+                <a href="mailto:info@wmc.cool" class="btn-primary px-6 py-2 rounded-full text-sm hidden md:block">
                     聯繫我們
                 </a>
                 
-                <button class="md:hidden text-white mobile-menu-btn">
-                    <i class="fas fa-bars text-xl"></i>
+                <button class="md:hidden text-white mobile-menu-btn hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
@@ -595,18 +857,46 @@
             <i class="fas fa-times"></i>
         </div>
         
-        <div class="mt-12 flex flex-col space-y-6">
+        <div class="mt-12 flex flex-col space-y-6 mobile-menu-content">
+            <a href="#home" class="text-xl hover:text-orange-400 transition">首頁</a>
             <a href="#about" class="text-xl hover:text-orange-400 transition">賽事概述</a>
             <a href="#competition" class="text-xl hover:text-orange-400 transition">競賽體系</a>
-            <a href="#equipment" class="text-xl hover:text-orange-400 transition">裝備技術</a>
+            <a href="#equipment" class="text-xl hover:text-orange-400 transition">裝備優勢</a>
             <a href="#parks" class="text-xl hover:text-orange-400 transition">軍推公園</a>
+            <a href="#training" class="text-xl hover:text-orange-400 transition">教育培訓</a>
+            <a href="#partnership" class="text-xl hover:text-orange-400 transition">合作模式</a>
             <a href="#contact" class="text-xl hover:text-orange-400 transition">聯繫我們</a>
+            
+            <div class="mt-8 pt-8 border-t border-gray-700">
+                <h4 class="text-lg font-semibold mb-4">語言選擇</h4>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
+                        <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文" class="w-6 h-4 mr-2">
+                        繁體中文
+                    </a>
+                    <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
+                        <img src="https://flagcdn.com/w40/cn.png" alt="简体中文" class="w-6 h-4 mr-2">
+                        简体中文
+                    </a>
+                    <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
+                        <img src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 mr-2">
+                        English
+                    </a>
+                    <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
+                        <img src="https://flagcdn.com/w40/jp.png" alt="日本語" class="w-6 h-4 mr-2">
+                        日本語
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <!-- Menu Overlay -->
+    <div class="menu-overlay"></div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg"></div>
+        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1582058091505-6b8c3a6c9a3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
         <div class="container mx-auto px-4 hero-content">
             <div class="max-w-4xl text-center mx-auto animate-fade-in">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">
@@ -627,7 +917,7 @@
                 </div>
                 
                 <!-- 核心數據 -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-12 stats-grid">
                     <div class="stats-card">
                         <i class="fas fa-globe-americas"></i>
                         <div class="number">5</div>
@@ -701,8 +991,10 @@
                 </div>
                 
                 <div class="animate-slide-up">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="軍事模擬對抗" class="rounded-2xl shadow-2xl">
+                    <div class="rounded-2xl shadow-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1582058091505-6b8c3a6c9a3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="軍事模擬對抗" class="w-full h-auto">
+                    </div>
                 </div>
             </div>
 
@@ -743,7 +1035,7 @@
             <div class="mb-20">
                 <h3 class="text-3xl font-bold mb-12 text-center gradient-text">五大標準場景系統</h3>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1566668534708-0a8e1c0a8c6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">城市作戰場景 (URBAN)</h4>
                             <p class="text-sm text-gray-200">高密度建筑群、復雜室內結構、多層垂直空間</p>
@@ -754,7 +1046,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">叢林作戰場景 (JUNGLE)</h4>
                             <p class="text-sm text-gray-200">多密度植被區、水系、地形起伏</p>
@@ -765,7 +1057,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">沙漠作戰場景 (DESERT)</h4>
                             <p class="text-sm text-gray-200">開闊地形、沙丘、岩石區、綠洲</p>
@@ -776,7 +1068,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1464822759844-d150ad6c1a9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">山地作戰場景 (MOUNTAIN)</h4>
                             <p class="text-sm text-gray-200">高低差大、崎嶇地形、洞穴系統</p>
@@ -787,7 +1079,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">水域作戰場景 (AQUATIC)</h4>
                             <p class="text-sm text-gray-200">水陸交界、海岸線、船隻、浮動平台</p>
@@ -801,7 +1093,7 @@
             </div>
 
             <!-- 四級參賽體系 -->
-            <div class="card p-8">
+            <div class="card p-8 mb-12">
                 <h3 class="text-3xl font-bold mb-8 gradient-text">四級參賽體系</h3>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="text-center">
@@ -841,23 +1133,181 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 全球巡回赛事安排 - 重新设计 -->
+            <div class="card p-8">
+                <h3 class="text-3xl font-bold mb-8 gradient-text text-center">全球巡回制度</h3>
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <p class="text-xl text-gray-300">
+                        WMC全球巡回赛制借鉴F1巡回赛的成功模式，结合军事模拟对抗的独特需求，
+                        为参赛队伍和全球观众创造前所未有的国际化竞技体验。
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h4 class="text-2xl font-bold mb-6 text-orange-400">制度特点</h4>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-globe-asia text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-bold mb-2">跨地域环境挑战</h5>
+                                    <p class="text-gray-300">参赛队伍将在不同气候、地形和文化背景的地区进行对抗，全面考验团队的适应能力和战术创新能力。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-14 h-14 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-users text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-bold mb-2">全球团队互动</h5>
+                                    <p class="text-gray-300">促进国际军事文化交流，各国队伍可建立长期合作关系，分享战术创新和经验。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-14 h-14 bg-gradient-to-r from-red-600 to-orange-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-calendar-alt text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-bold mb-2">赛季积分系统</h5>
+                                    <p class="text-gray-300">采用赛季积分制，各站比赛成绩累积，最终决出全球总冠军，确保全年赛事紧张刺激。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-xl p-6">
+                        <h4 class="text-2xl font-bold mb-6 text-orange-400">队长专属体验</h4>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-chess-king text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-bold mb-2">战略规划会议</h5>
+                                    <p class="text-gray-300">每站比赛前举行队长战略会议，分享环境分析报告，促进战术交流与创新。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-14 h-14 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-trophy text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-bold mb-2">精英队长俱乐部</h5>
+                                    <p class="text-gray-300">成立全球精英队长俱乐部，享有专属训练资源、数据分析工具和VIP观赛特权。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-14 h-14 bg-gradient-to-r from-blue-600 to-teal-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-lightbulb text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-bold mb-2">战术创新实验室</h5>
+                                    <p class="text-gray-300">参与WMC战术创新实验室，共同开发新战术体系，并获得专利授权收益。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 全球巡回特色亮点 -->
+                <h4 class="text-2xl font-bold mb-8 text-center text-orange-400">巡回制度核心价值</h4>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="tournament-feature-card">
+                        <div class="tournament-feature-icon">
+                            <i class="fas fa-globe text-white text-2xl"></i>
+                        </div>
+                        <h5 class="text-xl font-bold mb-3 text-center">全球文化融合</h5>
+                        <p class="text-gray-300 text-center">各国队伍带来多元战术风格，促进国际军事文化交流与创新融合。</p>
+                    </div>
+                    
+                    <div class="tournament-feature-card">
+                        <div class="tournament-feature-icon">
+                            <i class="fas fa-trophy text-white text-2xl"></i>
+                        </div>
+                        <h5 class="text-xl font-bold mb-3 text-center">高额赛事奖金</h5>
+                        <p class="text-gray-300 text-center">年度总奖金池超过500万美元，激励全球顶尖团队参与高水平竞争。</p>
+                    </div>
+                    
+                    <div class="tournament-feature-card">
+                        <div class="tournament-feature-icon">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h5 class="text-xl font-bold mb-3 text-center">独特观众体验</h5>
+                        <p class="text-gray-300 text-center">沉浸式观战系统，让全球观众感受真实战场氛围与战术决策过程。</p>
+                    </div>
+                    
+                    <div class="tournament-feature-card">
+                        <div class="tournament-feature-icon">
+                            <i class="fas fa-robot text-white text-2xl"></i>
+                        </div>
+                        <h5 class="text-xl font-bold mb-3 text-center">科技展示平台</h5>
+                        <p class="text-gray-300 text-center">展示最先进的军事模拟技术和装备，推动行业创新发展与技术革新。</p>
+                    </div>
+                </div>
+                
+                <!-- 全球区域示例 -->
+                <div class="mt-12 pt-8 border-t border-gray-700">
+                    <h4 class="text-2xl font-bold mb-6 text-center text-orange-400">全球巡回区域示例</h4>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="tournament-location">
+                            <div class="location-marker">
+                                <i class="fas fa-mountain text-orange-400"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold">北美赛区 · 沙漠风暴</h5>
+                                <p class="text-sm text-gray-400">美国内华达州 · 沙漠环境</p>
+                                <p class="text-sm text-gray-300 mt-2">极端气候环境下的战术耐力与装备可靠性测试</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tournament-location">
+                            <div class="location-marker">
+                                <i class="fas fa-city text-orange-400"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold">欧洲赛区 · 城市攻防</h5>
+                                <p class="text-sm text-gray-400">德国柏林 · 城市环境</p>
+                                <p class="text-sm text-gray-300 mt-2">复杂城市环境下的近距离作战与团队协同能力测试</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tournament-location">
+                            <div class="location-marker">
+                                <i class="fas fa-tree text-orange-400"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold">亚洲赛区 · 丛林突击</h5>
+                                <p class="text-sm text-gray-400">马来西亚沙巴 · 热带雨林</p>
+                                <p class="text-sm text-gray-300 mt-2">高湿度丛林环境下的隐蔽行动与生存能力测试</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 裝備技術 -->
+    <!-- 裝備技術優勢 -->
     <section id="equipment" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="section-title center text-4xl font-bold">裝備技術發展</h2>
+                <h2 class="section-title center text-4xl font-bold">装备技术优势</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-6">
-                    WMC建立了先進、安全、公平的武器裝備技術規範體系，確保比賽的仿真度和競技性
+                    WMC建立了先进、安全、公平的武器装备技术规范体系，确保比赛的仿真度和竞技性
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 仿真武器系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="https://images.unsplash.com/photo-1585450201188-0d436f0c0e9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                          alt="仿真武器系統" class="equipment-image">
                     <h3 class="text-xl font-bold mb-3">仿真武器系統</h3>
                     <p class="text-gray-300 mb-4">使用WMC認證的仿真彈丸和發射系統，確保安全性與真實感的完美平衡</p>
@@ -877,33 +1327,11 @@
                     </div>
                 </div>
 
-                <!-- 戰術裝備 -->
-                <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                         alt="戰術裝備" class="equipment-image">
-                    <h3 class="text-xl font-bold mb-3">戰術裝備系統</h3>
-                    <p class="text-gray-300 mb-4">包含個人防護裝備、戰術背心、通信系統等全套戰術裝備</p>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex items-center">
-                            <i class="fas fa-shield-alt text-orange-400 mr-2"></i>
-                            <span>頭部防護與護目鏡</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-vest text-orange-400 mr-2"></i>
-                            <span>戰術背心與攜行系統</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-headset text-orange-400 mr-2"></i>
-                            <span>加密無線通信系統</span>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- 無人系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="https://images.unsplash.com/photo-1581094794329-3c8b0e8f1a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                          alt="無人系統" class="equipment-image">
-                    <h3 class="text-xl font-bold mb-3">無人系統規範</h3>
+                    <h3 class="text-xl font-bold mb-3">無人系統優勢</h3>
                     <p class="text-gray-300 mb-4">戰術偵察無人機、地面機器人等現代化無人設備，增加戰術層次</p>
                     <div class="space-y-2 text-sm">
                         <div class="flex justify-between">
@@ -923,7 +1351,7 @@
 
                 <!-- 命中判定系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="https://images.unsplash.com/photo-1551817958-d9d86fb29431?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                          alt="命中判定系統" class="equipment-image">
                     <h3 class="text-xl font-bold mb-3">命中判定系統(HMSS)</h3>
                     <p class="text-gray-300 mb-4">多點傳感器覆蓋全身要害部位，精確識別命中位置和傷害程度</p>
@@ -945,7 +1373,7 @@
 
                 <!-- 戰場感知系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                          alt="戰場感知系統" class="equipment-image">
                     <h3 class="text-xl font-bold mb-3">戰場感知系統(BAS)</h3>
                     <p class="text-gray-300 mb-4">實時監控和記錄戰場狀態，包括高清攝像、熱成像追蹤等</p>
@@ -986,6 +1414,42 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- 装备技术优势总结 -->
+                <div class="equipment-card">
+                    <div class="h-full flex flex-col justify-center">
+                        <h3 class="text-xl font-bold mb-4 text-center">技术优势总结</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-shield-alt text-white"></i>
+                                </div>
+                                <span>最高安全标准</span>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-bullseye text-white"></i>
+                                </div>
+                                <span>最精准判定系统</span>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gradient-to-r from-red-600 to-orange-600 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-sync-alt text-white"></i>
+                                </div>
+                                <span>实时数据同步</span>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-robot text-white"></i>
+                                </div>
+                                <span>智能战术分析</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1002,8 +1466,10 @@
 
             <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
                 <div class="animate-slide-right">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="軍推公園概覽" class="rounded-2xl shadow-2xl">
+                    <div class="rounded-2xl shadow-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1528543605621-6fa5f6c5fd32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="軍推公園概覽" class="w-full h-auto">
+                    </div>
                 </div>
                 
                 <div class="animate-slide-up">
@@ -1110,256 +1576,161 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 發展規模 -->
-            <div class="card p-8">
-                <h3 class="text-3xl font-bold mb-8 gradient-text">發展規模與投資</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div class="text-4xl font-bold text-orange-400 mb-2">5-7</div>
-                        <div class="text-gray-300">個旗艦公園</div>
-                        <div class="text-sm text-gray-400 mt-1">一期規劃</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-orange-400 mb-2">100-300</div>
-                        <div class="text-gray-300">公頃占地面積</div>
-                        <div class="text-sm text-gray-400 mt-1">每個旗艦公園</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-orange-400 mb-2">1.5-3億</div>
-                        <div class="text-gray-300">美元投資規模</div>
-                        <div class="text-sm text-gray-400 mt-1">每個旗艦公園</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-orange-400 mb-2">30-50</div>
-                        <div class="text-gray-300">個體驗項目</div>
-                        <div class="text-sm text-gray-400 mt-1">每個公園</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- 實施路徑 -->
-    <section class="py-20 bg-gray-900">
+    <!-- 军推教育培训 -->
+    <section id="training" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="section-title center text-4xl font-bold">五年發展規劃</h2>
+                <h2 class="section-title center text-4xl font-bold">军推教育培训</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-6">
-                    WMC制定了清晰的五年發展規劃，明確各階段目標和重點工作
+                    提供从入门到专业的多层次教育培训体系，培养军事模拟竞技的专业人才
                 </p>
             </div>
 
-            <div class="space-y-12">
-                <!-- 第一階段 -->
-                <div class="card p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">1</span>
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="animate-slide-right">
+                    <h3 class="text-3xl font-bold mb-6 gradient-text">教育体系概述</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        WMC教育培训体系分为三个层次，覆盖从青少年爱好者到专业选手的全生命周期培训，
+                        结合线上课程和线下实践，提供全方位的军事模拟竞技教育。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="park-feature">
+                            <h4 class="text-lg font-semibold mb-2">
+                                <i class="fas fa-graduation-cap text-orange-400 mr-2"></i>
+                                系统化课程设计
+                            </h4>
+                            <p class="text-gray-300 text-sm">由军事专家和竞技教练共同开发的标准化课程</p>
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-bold">第一階段：基礎建設期</h3>
-                            <p class="text-gray-400">1-2年 • 組織架構建設與標準體系構建</p>
+                        
+                        <div class="park-feature">
+                            <h4 class="text-lg font-semibold mb-2">
+                                <i class="fas fa-certificate text-orange-400 mr-2"></i>
+                                专业资格认证
+                            </h4>
+                            <p class="text-gray-300 text-sm">国际认可的军事模拟竞技教练和裁判认证体系</p>
                         </div>
-                    </div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">組織架構建設</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 全球管理委員會成立</li>
-                                <li>• 區域執行機構組建</li>
-                                <li>• 技術標準委員會建立</li>
-                                <li>• 核心管理團隊招募</li>
-                            </ul>
+                        
+                        <div class="park-feature">
+                            <h4 class="text-lg font-semibold mb-2">
+                                <i class="fas fa-laptop text-orange-400 mr-2"></i>
+                                线上线下结合
+                            </h4>
+                            <p class="text-gray-300 text-sm">线上理论学习与线下实践训练相结合的教学模式</p>
                         </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">標準體系構建</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 競賽規則體系開發</li>
-                                <li>• 裝備技術標準制定</li>
-                                <li>• 場地標準制定</li>
-                                <li>• 安全規範建立</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">首批賽事啟動</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 核心賽區確定</li>
-                                <li>• 首屆區域冠軍賽</li>
-                                <li>• 展示賽和測試賽</li>
-                                <li>• 初步媒體網絡</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">商業基礎奠定</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 品牌定位建立</li>
-                                <li>• 種子輪A輪融資</li>
-                                <li>• 首批戰略合作夥伴</li>
-                                <li>• 商業模式驗證</li>
-                            </ul>
+                        
+                        <div class="park-feature">
+                            <h4 class="text-lg font-semibold mb-2">
+                                <i class="fas fa-globe-asia text-orange-400 mr-2"></i>
+                                全球培训网络
+                            </h4>
+                            <p class="text-gray-300 text-sm">覆盖全球五大区域的认证培训中心和教练团队</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- 第二階段 -->
-                <div class="card p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">2</span>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold">第二階段：全球擴張期</h3>
-                            <p class="text-gray-400">3-4年 • 賽事體系完善與場地網絡拓展</p>
-                        </div>
-                    </div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">賽事體系完善</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 全球正式賽季啟動</li>
-                                <li>• 五大賽區完整覆蓋</li>
-                                <li>• 職業隊伍體系建立</li>
-                                <li>• 賽事數據系統完善</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">場地網絡拓展</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 核心賽事基地建設</li>
-                                <li>• 首批軍推公園開發</li>
-                                <li>• 衛星賽場網絡建立</li>
-                                <li>• 訓練基地系統建設</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">媒體影響擴大</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 全球轉播網絡建立</li>
-                                <li>• 數字平台生態完善</li>
-                                <li>• 內容產業拓展</li>
-                                <li>• 全球粉絲社區建設</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">商業生態拓展</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• B輪C輪融資完成</li>
-                                <li>• 多元化收入結構</li>
-                                <li>• IP授權體系啟動</li>
-                                <li>• 區域商業夥伴網絡</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 第三階段 -->
-                <div class="card p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">3</span>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold">第三階段：成熟運營期</h3>
-                            <p class="text-gray-400">5年及以後 • 賽事頂級化與產業鏈整合</p>
-                        </div>
-                    </div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">賽事頂級化</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 全球總決賽品牌確立</li>
-                                <li>• 頂級職業隊伍成熟</li>
-                                <li>• 多層級賽事體系運行</li>
-                                <li>• 賽事創新持續推進</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">產業鏈整合</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 軍推公園全球網絡</li>
-                                <li>• 裝備產業深度整合</li>
-                                <li>• 人才培養體系完善</li>
-                                <li>• 相關產業鏈延伸</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">全球影響力</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 成為全球頂級體育IP</li>
-                                <li>• 建立廣泛社會影響力</li>
-                                <li>• 塑造文化影響</li>
-                                <li>• 跨界合作重要平台</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2 text-orange-400">可持續發展</h4>
-                            <ul class="text-sm text-gray-300 space-y-1">
-                                <li>• 上市或戰略融資</li>
-                                <li>• 可持續商業模式</li>
-                                <li>• 開創行業新範式</li>
-                                <li>• 良性生態循環</li>
-                            </ul>
-                        </div>
+                
+                <div class="animate-slide-up">
+                    <div class="rounded-2xl shadow-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="军推教育培训" class="w-full h-auto">
                     </div>
                 </div>
             </div>
 
-            <!-- 目標數據 -->
-            <div class="mt-16 card p-8">
-                <h3 class="text-3xl font-bold mb-8 gradient-text text-center">階段目標數據</h3>
+            <!-- 培训层次 -->
+            <div class="mb-20">
+                <h3 class="text-3xl font-bold mb-12 text-center gradient-text">三级培训体系</h3>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="text-center">
-                        <h4 class="text-xl font-bold mb-4 text-orange-400">基礎建設期 (1-2年)</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">參賽隊伍</span>
-                                <span class="font-semibold">60-80支</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">線上觀眾</span>
-                                <span class="font-semibold">500-800萬</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">年度收入</span>
-                                <span class="font-semibold">2000-3000萬美元</span>
-                            </div>
+                    <div class="training-level">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-seedling text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-center">基础培训</h4>
+                        <p class="text-gray-300 text-sm mb-4 text-center">面向青少年和入门爱好者</p>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>基础战术知识</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>装备使用与安全</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>团队协作基础</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>体能训练</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 text-center">
+                            <div class="text-orange-400 font-bold text-xl">120课时</div>
+                            <div class="text-sm text-gray-400">完成颁发WMC基础证书</div>
                         </div>
                     </div>
                     
-                    <div class="text-center">
-                        <h4 class="text-xl font-bold mb-4 text-orange-400">全球擴張期 (3-4年)</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">職業隊伍</span>
-                                <span class="font-semibold">120-150支</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">全球觀眾</span>
-                                <span class="font-semibold">5000-8000萬</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">年度收入</span>
-                                <span class="font-semibold">1.5-2億美元</span>
-                            </div>
+                    <div class="training-level">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tree text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-center">进阶培训</h4>
+                        <p class="text-gray-300 text-sm mb-4 text-center">面向竞技爱好者和半专业选手</p>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>高级战术策略</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>特殊环境作战</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>指挥与决策训练</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>装备维护与升级</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 text-center">
+                            <div class="text-orange-400 font-bold text-xl">240课时</div>
+                            <div class="text-sm text-gray-400">完成颁发WMC专业证书</div>
                         </div>
                     </div>
                     
-                    <div class="text-center">
-                        <h4 class="text-xl font-bold mb-4 text-orange-400">成熟運營期 (5年+)</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">職業隊伍</span>
-                                <span class="font-semibold">200-250支</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">全球觀眾</span>
-                                <span class="font-semibold">突破2億</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">年度收入</span>
-                                <span class="font-semibold">5億美元以上</span>
-                            </div>
+                    <div class="training-level">
+                        <div class="w-16 h-16 bg-gradient-to-r from-red-600 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-medal text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-center">精英培训</h4>
+                        <p class="text-gray-300 text-sm mb-4 text-center">面向职业选手和教练</p>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>战略规划与执行</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>赛事心理训练</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>团队管理与领导力</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                <span>国际赛事规则与裁判</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 text-center">
+                            <div class="text-orange-400 font-bold text-xl">360课时</div>
+                            <div class="text-sm text-gray-400">完成颁发WMC精英证书</div>
                         </div>
                     </div>
                 </div>
@@ -1367,115 +1738,175 @@
         </div>
     </section>
 
-    <!-- 商業模式 -->
-    <section class="py-20">
+    <!-- 合作模式 -->
+    <section id="partnership" class="py-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="section-title center text-4xl font-bold">商業模式</h2>
+                <h2 class="section-title center text-4xl font-bold">合作模式</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-6">
-                    構建"賽事+文旅+IP"的多元化收入結構，形成自我循環的商業體系
+                    多元化合作方式，共创共赢的商业生态
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                <div class="card p-6 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-trophy text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">賽事收入</h3>
-                    <p class="text-gray-300 text-sm mb-4">轉播權、贊助、票務等核心賽事收入</p>
-                    <ul class="text-sm text-gray-400 space-y-1">
-                        <li>• 參賽注冊費</li>
-                        <li>• 現場門票</li>
-                        <li>• 直播訂閱</li>
-                        <li>• 賽事衍生活動</li>
-                    </ul>
-                </div>
-
-                <div class="card p-6 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-handshake text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">商業合作收入</h3>
-                    <p class="text-gray-300 text-sm mb-4">贊助權益、廣告收入、企業定制服務</p>
-                    <ul class="text-sm text-gray-400 space-y-1">
-                        <li>• 頭部贊助</li>
-                        <li>• 場地廣告</li>
-                        <li>• 轉播廣告</li>
-                        <li>• 企業定制賽事</li>
-                    </ul>
-                </div>
-
-                <div class="card p-6 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="partnership-card">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-map-marked-alt text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">軍推公園收入</h3>
-                    <p class="text-gray-300 text-sm mb-4">門票、體驗項目、餐飲住宿等收入</p>
-                    <ul class="text-sm text-gray-400 space-y-1">
-                        <li>• 日常門票</li>
-                        <li>• 體驗項目</li>
-                        <li>• 零售餐飲</li>
-                        <li>• 配套服務</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-4 text-center">场地合作伙伴</h3>
+                    <p class="text-gray-300 mb-6">将现有场地改造为WMC标准赛事场地或训练基地</p>
+                    <div class="space-y-4 mb-8">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-chart-line text-orange-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">收益分成</div>
+                                <div class="text-sm text-gray-400">场地使用费分成比例最高达60%</div>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users text-orange-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">技术支持</div>
+                                <div class="text-sm text-gray-400">提供场地改造方案和技术支持</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="mailto:venues@wmc.cool" class="btn-primary w-full text-center py-3 rounded-lg">
+                        了解更多
+                    </a>
                 </div>
 
-                <div class="card p-6 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-orange-600 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-copyright text-2xl text-white"></i>
+                <div class="partnership-card">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-handshake text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">IP衍生收入</h3>
-                    <p class="text-gray-300 text-sm mb-4">授權、周邊、內容等IP變現</p>
-                    <ul class="text-sm text-gray-400 space-y-1">
-                        <li>• 消費品授權</li>
-                        <li>• 數字產品</li>
-                        <li>• 內容開發</li>
-                        <li>• 會員訂閱</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-4 text-center">商业赞助合作</h3>
+                    <p class="text-gray-300 mb-6">赛事赞助、装备赞助、场地冠名等多元化合作</p>
+                    <div class="space-y-4 mb-8">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-globe text-orange-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">全球曝光</div>
+                                <div class="text-sm text-gray-400">覆盖全球数亿观众的媒体曝光</div>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-ticket-alt text-orange-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">专属权益</div>
+                                <div class="text-sm text-gray-400">VIP观赛、专属活动等高级权益</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="mailto:sponsors@wmc.cool" class="btn-primary w-full text-center py-3 rounded-lg">
+                        了解更多
+                    </a>
+                </div>
+
+                <div class="partnership-card">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">教育培训合作</h3>
+                    <p class="text-gray-300 mb-6">联合开展军事模拟竞技教育培训项目</p>
+                    <div class="space-y-4 mb-8">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-book text-orange-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">课程授权</div>
+                                <div class="text-sm text-gray-400">获得WMC标准化课程体系授权</div>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-certificate text-orange-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">认证体系</div>
+                                <div class="text-sm text-gray-400">纳入全球认证教练和裁判体系</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="mailto:training@wmc.cool" class="btn-primary w-full text-center py-3 rounded-lg">
+                        了解更多
+                    </a>
                 </div>
             </div>
 
-            <!-- 收入預測 -->
+            <!-- 收益分成模式 -->
             <div class="card p-8">
-                <h3 class="text-3xl font-bold mb-8 gradient-text text-center">收入結構預測</h3>
-                <div class="space-y-8">
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold">賽事收入</span>
-                            <span class="text-orange-400 font-bold">35%</span>
+                <h3 class="text-3xl font-bold mb-8 gradient-text text-center">收益分成模式</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-map-marked-alt text-3xl text-white"></i>
                         </div>
-                        <div class="w-full bg-gray-700 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-blue-600 to-purple-600 h-3 rounded-full" style="width: 35%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold">商業合作收入</span>
-                            <span class="text-orange-400 font-bold">30%</span>
-                        </div>
-                        <div class="w-full bg-gray-700 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-green-600 to-blue-600 h-3 rounded-full" style="width: 30%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold">軍推公園收入</span>
-                            <span class="text-orange-400 font-bold">25%</span>
-                        </div>
-                        <div class="w-full bg-gray-700 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="width: 25%"></div>
+                        <h4 class="text-xl font-bold mb-4 text-orange-400">场地合作伙伴</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">赛事收入</span>
+                                <span class="font-semibold">40%-60%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">培训收入</span>
+                                <span class="font-semibold">50%-70%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">衍生收入</span>
+                                <span class="font-semibold">30%-50%</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold">IP衍生收入</span>
-                            <span class="text-orange-400 font-bold">10%</span>
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-handshake text-3xl text-white"></i>
                         </div>
-                        <div class="w-full bg-gray-700 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-orange-600 to-red-600 h-3 rounded-full" style="width: 10%"></div>
+                        <h4 class="text-xl font-bold mb-4 text-orange-400">赞助合作伙伴</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">品牌曝光价值</span>
+                                <span class="font-semibold">3-5倍投资回报</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">专属权益包</span>
+                                <span class="font-semibold">定制化方案</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">销售分成</span>
+                                <span class="font-semibold">10%-20%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-graduation-cap text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 text-orange-400">教育培训合作</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">课程收入</span>
+                                <span class="font-semibold">60%-80%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">认证收入</span>
+                                <span class="font-semibold">50%-70%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">装备销售</span>
+                                <span class="font-semibold">20%-30%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1687,260 +2118,187 @@
         </a>
     </div>
 
-    <!-- Language Notification -->
-    <div id="languageNotification" class="fixed top-20 right-4 bg-gray-800 border border-orange-400 rounded-lg p-4 z-50 transform translate-x-full transition-transform duration-300">
-        <div class="flex items-center">
-            <i class="fas fa-language text-orange-400 mr-2"></i>
-            <span class="text-sm">語言已切換</span>
-        </div>
-    </div>
-
     <script>
-        // Add random data streams
-        function createDataStreams() {
-            for (let i = 0; i < 6; i++) {
-                setTimeout(() => {
-                    const stream = document.createElement('div');
-                    stream.className = 'data-stream';
-                    stream.style.left = Math.random() * 100 + '%';
-                    stream.style.animationDelay = Math.random() * 2 + 's';
-                    document.body.appendChild(stream);
-                    
-                    // Remove after animation
-                    setTimeout(() => {
-                        stream.remove();
-                    }, 4000);
-                }, i * 2500);
-            }
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        
+        function toggleMenu() {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
         }
         
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Start data streams
-            createDataStreams();
-            setInterval(createDataStreams, 12000);
-            
-            // Smooth scroll for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            // Add scroll animations
-            const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        if (entry.target.classList.contains('animate-slide-up')) {
-                            entry.target.style.transform = 'translateY(0)';
-                        }
-                        if (entry.target.classList.contains('animate-slide-right')) {
-                            entry.target.style.transform = 'translateX(0)';
-                        }
-                        if (entry.target.classList.contains('animate-fade-in')) {
-                            entry.target.style.transform = 'scale(1)';
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s ease-in-out';
-                if (el.classList.contains('animate-slide-up')) {
-                    el.style.transform = 'translateY(50px)';
-                }
-                if (el.classList.contains('animate-slide-right')) {
-                    el.style.transform = 'translateX(-50px)';
-                }
-                if (el.classList.contains('animate-fade-in')) {
-                    el.style.transform = 'scale(0.95)';
-                }
-                observer.observe(el);
-            });
-            
-            // Mobile menu functionality
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const mobileMenuClose = document.querySelector('.mobile-menu-close');
-            
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.add('open');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-            
-            if (mobileMenuClose && mobileMenu) {
-                mobileMenuClose.addEventListener('click', () => {
-                    mobileMenu.classList.remove('open');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-            
-            // Close mobile menu when clicking on links
-            document.querySelectorAll('.mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mobileMenu) {
-                        mobileMenu.classList.remove('open');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            });
-            
-            // Language selection
-            const languageLinks = document.querySelectorAll('.language-dropdown a');
-            const languageIndicator = document.querySelector('.language-selector > div');
-            const languageNotification = document.getElementById('languageNotification');
-            
-            languageLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const lang = link.getAttribute('data-lang');
-                    const flag = link.querySelector('img').src;
-                    const text = link.textContent.trim();
-                    
-                    // Update language indicator
-                    if (languageIndicator) {
-                        languageIndicator.innerHTML = `
-                            <img src="${flag}" alt="${text}" class="w-6 h-4 mr-2">
-                            <span class="text-sm">${lang.includes('zh') ? (lang === 'zh-hk' ? '繁中' : '簡中') : lang.toUpperCase()}</span>
-                            <i class="fas fa-chevron-down ml-2 text-sm"></i>
-                        `;
-                    }
-                    
-                    // Show notification
-                    if (languageNotification) {
-                        languageNotification.style.transform = 'translateX(0)';
-                        setTimeout(() => {
-                            languageNotification.style.transform = 'translateX(100%)';
-                        }, 2000);
-                    }
-                });
-            });
-            
-            // Back to top button
-            const backToTopBtn = document.getElementById('backToTop');
-            if (backToTopBtn) {
-                window.addEventListener('scroll', () => {
-                    if (window.pageYOffset > 300) {
-                        backToTopBtn.style.opacity = '1';
-                        backToTopBtn.style.visibility = 'visible';
-                    } else {
-                        backToTopBtn.style.opacity = '0';
-                        backToTopBtn.style.visibility = 'hidden';
-                    }
-                });
-                
-                backToTopBtn.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-            
-            // Navbar scroll effect
-            const navbar = document.querySelector('.navbar');
-            if (navbar) {
-                window.addEventListener('scroll', () => {
-                    if (window.pageYOffset > 100) {
-                        navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
-                    } else {
-                        navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
-                    }
-                });
-            }
-            
-            // Email validation and submission
-            const emailInputs = document.querySelectorAll('input[type="email"]');
-            const subscribeButtons = document.querySelectorAll('button');
-            
-            subscribeButtons.forEach(button => {
-                if (button.textContent.includes('訂閱')) {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const emailInput = button.parentElement.querySelector('input[type="email"]');
-                        if (emailInput && emailInput.value) {
-                            const email = emailInput.value;
-                            if (validateEmail(email)) {
-                                alert('感謝您的訂閱！我們將向您發送最新資訊。');
-                                emailInput.value = '';
-                            } else {
-                                alert('請輸入有效的電子郵件地址。');
-                            }
-                        } else {
-                            alert('請輸入您的電子郵件地址。');
-                        }
-                    });
-                }
-            });
-            
-            // Enhanced card hover effects
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-8px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-            
-            // Scenario cards parallax effect
-            const scenarioCards = document.querySelectorAll('.scenario-card');
-            scenarioCards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = (y - centerY) / 10;
-                    const rotateY = (centerX - x) / 10;
-                    
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-                });
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+        }
+        
+        if (mobileMenuClose && mobileMenu) {
+            mobileMenuClose.addEventListener('click', toggleMenu);
+        }
+        
+        if (menuOverlay) {
+            menuOverlay.addEventListener('click', toggleMenu);
+        }
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
             });
         });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('open')) {
+                        toggleMenu();
+                    }
+                }
+            });
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.style.opacity = '1';
+                    backToTopBtn.style.visibility = 'visible';
+                } else {
+                    backToTopBtn.style.opacity = '0';
+                    backToTopBtn.style.visibility = 'hidden';
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+                }
+            });
+        }
+        
+        // Add scroll animations
+        const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    if (entry.target.classList.contains('animate-slide-up')) {
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                    if (entry.target.classList.contains('animate-slide-right')) {
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                    if (entry.target.classList.contains('animate-fade-in')) {
+                        entry.target.style.transform = 'scale(1)';
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        animatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transition = 'all 0.8s ease-in-out';
+            if (el.classList.contains('animate-slide-up')) {
+                el.style.transform = 'translateY(50px)';
+            }
+            if (el.classList.contains('animate-slide-right')) {
+                el.style.transform = 'translateX(-50px)';
+            }
+            if (el.classList.contains('animate-fade-in')) {
+                el.style.transform = 'scale(0.95)';
+            }
+            observer.observe(el);
+        });
+        
+        // Enhanced card hover effects
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Scenario cards parallax effect
+        const scenarioCards = document.querySelectorAll('.scenario-card');
+        scenarioCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        });
+        
+        // Newsletter form validation
+        const newsletterForm = document.querySelector('.card.p-6');
+        if (newsletterForm) {
+            const emailInput = newsletterForm.querySelector('input[type="email"]');
+            const subscribeBtn = newsletterForm.querySelector('button');
+            
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (emailInput && emailInput.value) {
+                        const email = emailInput.value;
+                        if (validateEmail(email)) {
+                            alert('感謝您的訂閱！我們將向您發送最新資訊。');
+                            emailInput.value = '';
+                        } else {
+                            alert('請輸入有效的電子郵件地址。');
+                        }
+                    } else {
+                        alert('請輸入您的電子郵件地址。');
+                    }
+                });
+            }
+        }
         
         // Email validation function
         function validateEmail(email) {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
-        
-        // Performance optimization
-        let ticking = false;
-        function updateOnScroll() {
-            // Update scroll-based animations here
-            ticking = false;
-        }
-        
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateOnScroll);
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', requestTick);
     </script>
 </body>
 </html>
-                        
