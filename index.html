@@ -147,8 +147,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23000;stop-opacity:0.8"/><stop offset="50%" style="stop-color:%23001a33;stop-opacity:0.6"/><stop offset="100%" style="stop-color:%23002244;stop-opacity:0.8"/></linearGradient></defs><rect width="1000" height="600" fill="url(%23bg)"/><g opacity="0.1"><circle cx="100" cy="100" r="3" fill="%23ff6b35"/><circle cx="300" cy="200" r="2" fill="%23ffd700"/><circle cx="700" cy="150" r="3" fill="%23ff6b35"/><circle cx="900" cy="300" r="2" fill="%23ffd700"/><circle cx="200" cy="400" r="3" fill="%23ff6b35"/><circle cx="600" cy="500" r="2" fill="%23ffd700"/></g><g opacity="0.05"><polygon points="50,50 150,100 100,200" fill="%23ff6b35"/><polygon points="800,400 900,450 850,550" fill="%23ffd700"/></g></svg>') center/cover;
             opacity: 0.8;
             animation: bgPan 30s infinite linear;
         }
@@ -568,7 +567,7 @@
             }
             
             .language-selector {
-                margin-right: 10px;
+                display: none; /* 移动端隐藏语言选择器 */
             }
             
             .logo-font {
@@ -576,8 +575,8 @@
             }
             
             .hero {
-                padding-top: 60px;
-                min-height: 90vh;
+                padding-top: 80px; /* 增加顶部间距避免被导航栏遮挡 */
+                min-height: 100vh;
             }
             
             .hero-bg {
@@ -602,10 +601,13 @@
             
             .hero h1 {
                 font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
             }
             
             .hero p {
                 font-size: 1rem;
+                margin-bottom: 2rem;
             }
             
             .stats-card {
@@ -652,19 +654,29 @@
             .section-title {
                 font-size: 1.8rem;
             }
+            
+            /* 修正移动端按钮布局 */
+            .navbar .flex.items-center.space-x-4 {
+                justify-content: flex-end;
+            }
+            
+            /* 确保汉堡菜单按钮可见 */
+            .hamburger {
+                display: flex !important;
+            }
         }
         
         @media (max-width: 480px) {
             .hero {
-                padding-top: 70px;
+                padding-top: 90px; /* 更大的顶部间距 */
             }
             
             .logo-font {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             
             .logo-sub {
-                font-size: 0.6rem;
+                font-size: 0.7rem;
             }
             
             .text-6xl {
@@ -677,10 +689,16 @@
             
             .hero h1 {
                 font-size: 1.8rem;
+                line-height: 1.3;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+                padding: 0 1rem;
             }
             
             .btn-primary, .btn-secondary {
-                padding: 10px 20px;
+                padding: 12px 24px;
                 font-size: 0.9rem;
             }
             
@@ -688,11 +706,16 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
             }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
         
         /* 新增视觉元素 */
         .hamburger {
-            display: flex;
+            display: none; /* 默认隐藏，在移动端显示 */
             flex-direction: column;
             justify-content: space-around;
             width: 30px;
@@ -702,6 +725,13 @@
             cursor: pointer;
             padding: 0;
             z-index: 1001;
+        }
+        
+        /* 移动端显示汉堡菜单 */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex !important;
+            }
         }
         
         .hamburger span {
@@ -768,6 +798,19 @@
             justify-content: center;
             margin: 0 auto 20px;
         }
+
+        /* 图片样式 */
+        .img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: #9ca3af;
+            border-radius: 12px;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -807,32 +850,44 @@
                 <a href="#contact" class="hover:text-orange-400 transition">聯繫我們</a>
             </div>
             <div class="flex items-center space-x-4">
-                <!-- Language Selector -->
+                <!-- Language Selector - 仅桌面端显示 -->
                 <div class="language-selector hidden md:block">
                     <div class="flex items-center cursor-pointer">
-                        <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文" class="w-6 h-4 mr-2">
+                        <div class="w-6 h-4 mr-2 bg-red-600 flex items-center justify-center">
+                            <div class="text-xs text-white">🇭🇰</div>
+                        </div>
                         <span class="text-sm">繁中</span>
                         <i class="fas fa-chevron-down ml-2 text-sm"></i>
                     </div>
                     <div class="language-dropdown">
                         <a href="#" data-lang="zh-hk">
-                            <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文">
+                            <div class="w-6 h-4 mr-2 bg-red-600 flex items-center justify-center">
+                                <div class="text-xs text-white">🇭🇰</div>
+                            </div>
                             繁體中文
                         </a>
                         <a href="#" data-lang="zh-cn">
-                            <img src="https://flagcdn.com/w40/cn.png" alt="简体中文">
+                            <div class="w-6 h-4 mr-2 bg-red-600 flex items-center justify-center">
+                                <div class="text-xs text-white">🇨🇳</div>
+                            </div>
                             简体中文
                         </a>
                         <a href="#" data-lang="en">
-                            <img src="https://flagcdn.com/w40/gb.png" alt="English">
+                            <div class="w-6 h-4 mr-2 bg-blue-600 flex items-center justify-center">
+                                <div class="text-xs text-white">🇬🇧</div>
+                            </div>
                             English
                         </a>
                         <a href="#" data-lang="ja">
-                            <img src="https://flagcdn.com/w40/jp.png" alt="日本語">
+                            <div class="w-6 h-4 mr-2 bg-red-600 flex items-center justify-center">
+                                <div class="text-xs text-white">🇯🇵</div>
+                            </div>
                             日本語
                         </a>
                         <a href="#" data-lang="ko">
-                            <img src="https://flagcdn.com/w40/kr.png" alt="한국어">
+                            <div class="w-6 h-4 mr-2 bg-blue-600 flex items-center justify-center">
+                                <div class="text-xs text-white">🇰🇷</div>
+                            </div>
                             한국어
                         </a>
                     </div>
@@ -842,7 +897,8 @@
                     聯繫我們
                 </a>
                 
-                <button class="md:hidden text-white mobile-menu-btn hamburger">
+                <!-- 汉堡菜单按钮 - 仅移动端显示 -->
+                <button class="hamburger mobile-menu-btn">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -867,26 +923,42 @@
             <a href="#partnership" class="text-xl hover:text-orange-400 transition">合作模式</a>
             <a href="#contact" class="text-xl hover:text-orange-400 transition">聯繫我們</a>
             
+            <!-- 移动端语言选择 -->
             <div class="mt-8 pt-8 border-t border-gray-700">
                 <h4 class="text-lg font-semibold mb-4">語言選擇</h4>
                 <div class="grid grid-cols-2 gap-3">
                     <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
-                        <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文" class="w-6 h-4 mr-2">
+                        <div class="w-6 h-4 mr-2 bg-red-600 flex items-center justify-center">
+                            <div class="text-xs text-white">🇭🇰</div>
+                        </div>
                         繁體中文
                     </a>
                     <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
-                        <img src="https://flagcdn.com/w40/cn.png" alt="简体中文" class="w-6 h-4 mr-2">
+                        <div class="w-6 h-4 mr-2 bg-red-600 flex items-center justify-center">
+                            <div class="text-xs text-white">🇨🇳</div>
+                        </div>
                         简体中文
                     </a>
                     <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
-                        <img src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 mr-2">
+                        <div class="w-6 h-4 mr-2 bg-blue-600 flex items-center justify-center">
+                            <div class="text-xs text-white">🇬🇧</div>
+                        </div>
                         English
                     </a>
                     <a href="#" class="text-gray-300 flex items-center p-2 rounded-lg bg-gray-800 hover:bg-gray-700">
-                        <img src="https://flagcdn.com/w40/jp.png" alt="日本語" class="w-6 h-4 mr-2">
+                        <div class="w-6 h-4 mr-2 bg-red-600 flex items-center justify-center">
+                            <div class="text-xs text-white">🇯🇵</div>
+                        </div>
                         日本語
                     </a>
                 </div>
+            </div>
+            
+            <!-- 移动端联系按钮 -->
+            <div class="mt-6">
+                <a href="mailto:info@wmc.cool" class="btn-primary w-full text-center py-3 rounded-lg">
+                    聯繫我們
+                </a>
             </div>
         </div>
     </div>
@@ -896,12 +968,13 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1582058091505-6b8c3a6c9a3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+        <div class="hero-bg"></div>
         <div class="container mx-auto px-4 hero-content">
             <div class="max-w-4xl text-center mx-auto animate-fade-in">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                     世界軍推錦標賽
-                    <span class="block gradient-text">全球首個高度仿真軍事模擬對抗賽事</span>
+                    <br>
+                    <span class="gradient-text">全球首個高度仿真軍事模擬對抗賽事</span>
                 </h1>
                 <p class="text-xl text-gray-300 mb-8 leading-relaxed">
                     融合F1全球巡回賽制、NBA商業化模式以及迪士尼主題公園的文旅體驗，
@@ -992,8 +1065,13 @@
                 
                 <div class="animate-slide-up">
                     <div class="rounded-2xl shadow-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1582058091505-6b8c3a6c9a3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="軍事模擬對抗" class="w-full h-auto">
+                        <div class="img-placeholder h-80">
+                            <div class="text-center">
+                                <i class="fas fa-crosshairs text-6xl mb-4 text-orange-400"></i>
+                                <div class="text-lg font-semibold">軍事模擬對抗場景</div>
+                                <div class="text-sm">高度仿真戰術環境</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1035,7 +1113,7 @@
             <div class="mb-20">
                 <h3 class="text-3xl font-bold mb-12 text-center gradient-text">五大標準場景系統</h3>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1566668534708-0a8e1c0a8c6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(30,41,59,0.8)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%23374151&quot; width=&quot;400&quot; height=&quot;300&quot;/><g fill=&quot;%23ff6b35&quot; opacity=&quot;0.3&quot;><rect x=&quot;50&quot; y=&quot;50&quot; width=&quot;60&quot; height=&quot;80&quot;/><rect x=&quot;150&quot; y=&quot;40&quot; width=&quot;80&quot; height=&quot;100&quot;/><rect x=&quot;280&quot; y=&quot;60&quot; width=&quot;70&quot; height=&quot;90&quot;/><rect x=&quot;80&quot; y=&quot;180&quot; width=&quot;90&quot; height=&quot;70&quot;/><rect x=&quot;220&quot; y=&quot;200&quot; width=&quot;100&quot; height=&quot;60&quot;/></g></svg>') center/cover;">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">城市作戰場景 (URBAN)</h4>
                             <p class="text-sm text-gray-200">高密度建筑群、復雜室內結構、多層垂直空間</p>
@@ -1046,7 +1124,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(30,41,59,0.8)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%23065f46&quot; width=&quot;400&quot; height=&quot;300&quot;/><g fill=&quot;%232d5016&quot; opacity=&quot;0.7&quot;><circle cx=&quot;80&quot; cy=&quot;100&quot; r=&quot;30&quot;/><circle cx=&quot;200&quot; cy=&quot;80&quot; r=&quot;40&quot;/><circle cx=&quot;320&quot; cy=&quot;120&quot; r=&quot;35&quot;/><circle cx=&quot;150&quot; cy=&quot;200&quot; r=&quot;45&quot;/><circle cx=&quot;300&quot; cy=&quot;220&quot; r=&quot;25&quot;/></g></svg>') center/cover;">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">叢林作戰場景 (JUNGLE)</h4>
                             <p class="text-sm text-gray-200">多密度植被區、水系、地形起伏</p>
@@ -1057,7 +1135,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(30,41,59,0.8)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%23d97706&quot; width=&quot;400&quot; height=&quot;300&quot;/><g fill=&quot;%23f59e0b&quot; opacity=&quot;0.5&quot;><circle cx=&quot;100&quot; cy=&quot;80&quot; r=&quot;20&quot;/><circle cx=&quot;250&quot; cy=&quot;120&quot; r=&quot;30&quot;/><circle cx=&quot;180&quot; cy=&quot;200&quot; r=&quot;25&quot;/><path d=&quot;M320,150 Q360,170 350,200 Q340,220 320,210 Q300,200 310,170 Q320,150 320,150&quot;/></g></svg>') center/cover;">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">沙漠作戰場景 (DESERT)</h4>
                             <p class="text-sm text-gray-200">開闊地形、沙丘、岩石區、綠洲</p>
@@ -1068,7 +1146,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(30,41,59,0.8)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%236b7280&quot; width=&quot;400&quot; height=&quot;300&quot;/><g fill=&quot;%239ca3af&quot; opacity=&quot;0.6&quot;><path d=&quot;M0,200 Q100,150 200,180 Q300,210 400,160 L400,300 L0,300 Z&quot;/><path d=&quot;M0,180 Q150,120 250,140 Q350,160 400,120 L400,200 Q300,170 200,190 Q100,210 0,170 Z&quot;/></g></svg>') center/cover;">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">山地作戰場景 (MOUNTAIN)</h4>
                             <p class="text-sm text-gray-200">高低差大、崎嶇地形、洞穴系統</p>
@@ -1079,7 +1157,7 @@
                         </div>
                     </div>
                     
-                    <div class="scenario-card" style="background-image: url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="scenario-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(30,41,59,0.8)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%230ea5e9&quot; width=&quot;400&quot; height=&quot;300&quot;/><g fill=&quot;%2306b6d4&quot; opacity=&quot;0.6&quot;><circle cx=&quot;80&quot; cy=&quot;180&quot; r=&quot;15&quot;/><circle cx=&quot;200&quot; cy=&quot;200&quot; r=&quot;20&quot;/><circle cx=&quot;320&quot; cy=&quot;160&quot; r=&quot;18&quot;/><rect x=&quot;150&quot; y=&quot;100&quot; width=&quot;100&quot; height=&quot;20&quot; rx=&quot;10&quot;/></g></svg>') center/cover;">
                         <div class="scenario-content">
                             <h4 class="text-xl font-bold mb-2">水域作戰場景 (AQUATIC)</h4>
                             <p class="text-sm text-gray-200">水陸交界、海岸線、船隻、浮動平台</p>
@@ -1134,7 +1212,7 @@
                 </div>
             </div>
             
-            <!-- 全球巡回赛事安排 - 重新设计 -->
+            <!-- 全球巡回赛事安排 -->
             <div class="card p-8">
                 <h3 class="text-3xl font-bold mb-8 gradient-text text-center">全球巡回制度</h3>
                 <div class="text-center max-w-3xl mx-auto mb-10">
@@ -1307,8 +1385,12 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 仿真武器系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1585450201188-0d436f0c0e9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                         alt="仿真武器系統" class="equipment-image">
+                    <div class="img-placeholder equipment-image">
+                        <div class="text-center">
+                            <i class="fas fa-crosshairs text-4xl mb-2 text-orange-400"></i>
+                            <div class="text-sm">仿真武器系統</div>
+                        </div>
+                    </div>
                     <h3 class="text-xl font-bold mb-3">仿真武器系統</h3>
                     <p class="text-gray-300 mb-4">使用WMC認證的仿真彈丸和發射系統，確保安全性與真實感的完美平衡</p>
                     <div class="space-y-2 text-sm">
@@ -1329,8 +1411,12 @@
 
                 <!-- 無人系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1581094794329-3c8b0e8f1a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                         alt="無人系統" class="equipment-image">
+                    <div class="img-placeholder equipment-image">
+                        <div class="text-center">
+                            <i class="fas fa-drone text-4xl mb-2 text-orange-400"></i>
+                            <div class="text-sm">戰術無人機</div>
+                        </div>
+                    </div>
                     <h3 class="text-xl font-bold mb-3">無人系統優勢</h3>
                     <p class="text-gray-300 mb-4">戰術偵察無人機、地面機器人等現代化無人設備，增加戰術層次</p>
                     <div class="space-y-2 text-sm">
@@ -1351,8 +1437,12 @@
 
                 <!-- 命中判定系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1551817958-d9d86fb29431?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                         alt="命中判定系統" class="equipment-image">
+                    <div class="img-placeholder equipment-image">
+                        <div class="text-center">
+                            <i class="fas fa-bullseye text-4xl mb-2 text-orange-400"></i>
+                            <div class="text-sm">命中判定系統</div>
+                        </div>
+                    </div>
                     <h3 class="text-xl font-bold mb-3">命中判定系統(HMSS)</h3>
                     <p class="text-gray-300 mb-4">多點傳感器覆蓋全身要害部位，精確識別命中位置和傷害程度</p>
                     <div class="space-y-2 text-sm">
@@ -1373,8 +1463,12 @@
 
                 <!-- 戰場感知系統 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                         alt="戰場感知系統" class="equipment-image">
+                    <div class="img-placeholder equipment-image">
+                        <div class="text-center">
+                            <i class="fas fa-eye text-4xl mb-2 text-orange-400"></i>
+                            <div class="text-sm">戰場感知系統</div>
+                        </div>
+                    </div>
                     <h3 class="text-xl font-bold mb-3">戰場感知系統(BAS)</h3>
                     <p class="text-gray-300 mb-4">實時監控和記錄戰場狀態，包括高清攝像、熱成像追蹤等</p>
                     <div class="space-y-2 text-sm">
@@ -1395,8 +1489,12 @@
 
                 <!-- 數據分析平台 -->
                 <div class="equipment-card">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                         alt="數據分析平台" class="equipment-image">
+                    <div class="img-placeholder equipment-image">
+                        <div class="text-center">
+                            <i class="fas fa-chart-line text-4xl mb-2 text-orange-400"></i>
+                            <div class="text-sm">數據分析平台</div>
+                        </div>
+                    </div>
                     <h3 class="text-xl font-bold mb-3">數據採集與分析平台</h3>
                     <p class="text-gray-300 mb-4">基於UWB技術的實時精確定位和AI驅動的戰術分析系統</p>
                     <div class="space-y-2 text-sm">
@@ -1467,8 +1565,13 @@
             <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
                 <div class="animate-slide-right">
                     <div class="rounded-2xl shadow-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1528543605621-6fa5f6c5fd32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="軍推公園概覽" class="w-full h-auto">
+                        <div class="img-placeholder h-80">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-6xl mb-4 text-orange-400"></i>
+                                <div class="text-lg font-semibold">軍推公園概覽</div>
+                                <div class="text-sm">綜合性軍事模擬主題目的地</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -1634,8 +1737,13 @@
                 
                 <div class="animate-slide-up">
                     <div class="rounded-2xl shadow-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="军推教育培训" class="w-full h-auto">
+                        <div class="img-placeholder h-80">
+                            <div class="text-center">
+                                <i class="fas fa-chalkboard-teacher text-6xl mb-4 text-orange-400"></i>
+                                <div class="text-lg font-semibold">军推教育培训</div>
+                                <div class="text-sm">专业技能培训体系</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2299,6 +2407,99 @@
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
+        
+        // Stats counter animation
+        const statsCards = document.querySelectorAll('.stats-card .number');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const finalValue = target.textContent;
+                    let currentValue = 0;
+                    const increment = finalValue.includes('億') ? 0.1 : 1;
+                    const maxValue = parseFloat(finalValue.replace(/[^\d.]/g, ''));
+                    
+                    const counter = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= maxValue) {
+                            target.textContent = finalValue;
+                            clearInterval(counter);
+                        } else {
+                            if (finalValue.includes('億')) {
+                                target.textContent = currentValue.toFixed(1) + '億';
+                            } else if (finalValue.includes('萬')) {
+                                target.textContent = Math.floor(currentValue) + '萬';
+                            } else {
+                                target.textContent = Math.floor(currentValue);
+                            }
+                        }
+                    }, 50);
+                    
+                    statsObserver.unobserve(target);
+                }
+            });
+        });
+        
+        statsCards.forEach(card => {
+            statsObserver.observe(card);
+        });
+        
+        // Remove typing effect that causes HTML display issues
+        
+        // Particle effect for hero background
+        function createParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.style.position = 'absolute';
+            particleContainer.style.top = '0';
+            particleContainer.style.left = '0';
+            particleContainer.style.width = '100%';
+            particleContainer.style.height = '100%';
+            particleContainer.style.pointerEvents = 'none';
+            particleContainer.style.zIndex = '1';
+            
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.appendChild(particleContainer);
+                
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.style.position = 'absolute';
+                    particle.style.width = '2px';
+                    particle.style.height = '2px';
+                    particle.style.backgroundColor = '#ff6b35';
+                    particle.style.borderRadius = '50%';
+                    particle.style.opacity = '0.5';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animation = `floating ${3 + Math.random() * 3}s ease-in-out infinite`;
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    
+                    particleContainer.appendChild(particle);
+                }
+            }
+        }
+        
+        // Initialize particles after page load
+        window.addEventListener('load', createParticles);
+        
+        // Smooth reveal animation for sections
+        const sections = document.querySelectorAll('section');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.8s ease-in-out';
+            sectionObserver.observe(section);
+        });
     </script>
 </body>
 </html>
+                
